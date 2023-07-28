@@ -1,10 +1,18 @@
-import Link from "next/link";
-import React from "react";
+"use client";
+
+import useLoginModal from "@/components/hooks/useLoginModal";
+import React, { useCallback } from "react";
 import { BsFillPencilFill } from "react-icons/bs";
 
 const SidebarTweetButton = () => {
+  const loginModal = useLoginModal();
+
+  const onClick = useCallback(() => {
+    loginModal.onOpen();
+  }, [loginModal]);
+
   return (
-    <Link href="/">
+    <div onClick={onClick}>
       <div className="relative rounded-full mt-6 h-14 w-14 items-center justify-center p-4 bg-sky-500 hover:bg-opacity-90 cursor-pointer lg:hidden">
         <BsFillPencilFill size={24} color="white" />
       </div>
@@ -15,7 +23,7 @@ const SidebarTweetButton = () => {
           Tweet
         </p>
       </div>
-    </Link>
+    </div>
   );
 };
 
