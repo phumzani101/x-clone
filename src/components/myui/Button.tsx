@@ -4,7 +4,7 @@ import React, { FC } from "react";
 interface ButtonProps {
   title: string;
   secondary?: boolean;
-  fullWidth: boolean;
+  fullWidth?: boolean;
   large?: boolean;
   disabled?: boolean;
   outline?: boolean;

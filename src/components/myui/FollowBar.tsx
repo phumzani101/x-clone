@@ -1,6 +1,7 @@
 import useUsers from "@/hooks/useUsers";
 import React from "react";
 import Avatar from "./Avatar";
+import Link from "next/link";
 
 const FollowBar = () => {
   const { data: users = [] } = useUsers();
@@ -17,7 +18,15 @@ const FollowBar = () => {
           {users.map((user: Record<string, any>) => (
             <div key={user.id} className="flex flex-row gap-4">
               <Avatar userId={user.id} />
-              <div className=""></div>
+
+              <Link href={`/users/${user.id}`} className="">
+                <div className="flex flex-col">
+                  <p className="text-white font-semibold text-sm">
+                    {user?.name}
+                  </p>
+                  <p className="text-neutral-400 text-sm">@{user?.username}</p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
