@@ -28,7 +28,7 @@ const Sidebar = () => {
     },
     {
       name: "Profile",
-      href: "/users/name",
+      href: `/users/${user?.id}`,
       Icon: BsFillPersonFill,
       auth: true,
     },

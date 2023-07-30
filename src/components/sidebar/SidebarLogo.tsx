@@ -8,10 +8,10 @@ const SidebarLogo = () => {
   return (
     <Link href="/">
       <div className="flex flex-row items-center">
-        <div className="relative rounded-full h-38 w-38 items-center justify-center p-4 hover:bg-slate-300 hover:bg-opacity-10 cursor-pointer lg:hidden text-sky-500">
+        <div className="relative rounded-full h-38 w-38 items-center justify-center p-2 hover:bg-slate-300 hover:bg-opacity-10 cursor-pointer lg:hidden text-sky-500">
           <Image src="/images/xlogo.png" width={38} height={38} alt="logo" />
         </div>
-        <div className="relative hidden lg:flex items-center gap-4 p-4 rounded-full w-full cursor-pointer">
+        <div className="relative hidden lg:flex items-center gap-4 rounded-full w-full cursor-pointer">
           {/* <BsXLg size={28} /> */}
           <Image src="/images/xlogo.png" width={50} height={50} alt="logo" />
 
