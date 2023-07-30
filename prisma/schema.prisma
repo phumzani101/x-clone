@@ -23,7 +23,7 @@ model User {
   password        String?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  followingId     String[] @db.ObjectId
+  followingIds    String[] @db.ObjectId
   hasNotification Boolean  @default(false)
   posts           Post[]
   comments        Comment[]

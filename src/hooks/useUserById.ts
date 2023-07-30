@@ -1,13 +1,13 @@
 import fetcher from "@/lib/fetcher";
 import useSWR from "swr";
 
-const useUser = () => {
+const useUserById = (userId: string) => {
   const { data, error, isLoading, mutate } = useSWR(
-    "/api/users/current",
+    `/api/users/${userId}`,
     fetcher
   );
 
   return { data, error, isLoading, mutate };
 };
 
-export default useUser;
+export default useUserById;
