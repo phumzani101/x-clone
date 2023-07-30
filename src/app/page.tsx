@@ -1,4 +1,4 @@
-import Header from "@/components/ui/Header";
+import Header from "@/components/myui/Header";
 import Image from "next/image";
 
 export default function Home() {

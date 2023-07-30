@@ -1,56 +1,43 @@
 "use client";
 import React, { useCallback, useState } from "react";
-import Modal from "@/components/ui/Modal";
-import useRegisterModal from "@/components/hooks/useRegisterModal";
-import Input from "@/components/ui/Input";
-import useLoginModal from "@/components/hooks/useLoginModal";
+import Modal from "@/components/modals/Modal";
+import useLoginModal from "@/hooks/useLoginModal";
+import Input from "@/components/myui/Input";
+import useRegisterModal from "@/hooks/useRegisterModal";
+import { signIn } from "next-auth/react";
 
-const RegisterModal = () => {
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
+const LoginModal = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   // use modal state
-  const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
 
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-
+      signIn("credentials", { email, password });
       // close modal
-      registerModal.onClose();
+      loginModal.onClose();
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-  }, [registerModal]);
+  }, [loginModal, email, password]);
 
   const onToggle = useCallback(() => {
     if (isLoading) {
       return;
     }
 
-    registerModal.onClose();
-    loginModal.onOpen();
+    loginModal.onClose();
+    registerModal.onOpen();
   }, [isLoading, registerModal, loginModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Input
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-        value={username}
-        disabled={isLoading}
-      />
-      <Input
-        placeholder="Full Name"
-        onChange={(e) => setName(e.target.value)}
-        value={name}
-        disabled={isLoading}
-      />
       <Input
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
@@ -60,6 +47,7 @@ const RegisterModal = () => {
 
       <Input
         placeholder="Password"
+        type="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         disabled={isLoading}
@@ -70,12 +58,12 @@ const RegisterModal = () => {
   const footerContent = (
     <div className="text-neutral-400 text-center mt-4">
       <p>
-        Already have an account?{" "}
+        Do not have an account?{" "}
         <span
           className="text-white cursor-pointer hover:underline"
           onClick={onToggle}
         >
-          Login
+          Register
         </span>
       </p>
     </div>
@@ -83,11 +71,11 @@ const RegisterModal = () => {
 
   return (
     <Modal
-      isOpen={registerModal.isOpen}
-      onClose={registerModal.onClose}
+      isOpen={loginModal.isOpen}
+      onClose={loginModal.onClose}
       onSubmit={onSubmit}
-      title="Register"
-      actionLabel="Register"
+      title="Login"
+      actionLabel="Login"
       body={bodyContent}
       footer={footerContent}
       disabled={isLoading}
@@ -95,4 +83,4 @@ const RegisterModal = () => {
   );
 };
 
-export default RegisterModal;
+export default LoginModal;

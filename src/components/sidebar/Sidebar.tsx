@@ -8,23 +8,29 @@ import {
 import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
 import SidebarTweetButton from "./SidebarTweetButton";
+import useUser from "@/hooks/useUser";
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
+  const { data: user } = useUser();
   const routes = [
     {
       name: "Home",
       href: "/",
       Icon: BsHouseFill,
+      auth: false,
     },
     {
       name: "Notifications",
       href: "/notifications",
       Icon: BsBellFill,
+      auth: true,
     },
     {
       name: "Profile",
       href: "/users/name",
       Icon: BsFillPersonFill,
+      auth: true,
     },
   ];
   return (
@@ -35,12 +41,15 @@ const Sidebar = () => {
           {routes.map((route) => (
             <SidebarItem key={route.href} {...route} />
           ))}
-          <SidebarItem
-            onClick={() => {}}
-            Icon={BsBoxArrowLeft}
-            name="Logout"
-            href="!#"
-          />
+          {user && (
+            <SidebarItem
+              onClick={() => signOut()}
+              Icon={BsBoxArrowLeft}
+              name="Logout"
+              href="!#"
+            />
+          )}
+
           <SidebarTweetButton />
         </div>
       </div>

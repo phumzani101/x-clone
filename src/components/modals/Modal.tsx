@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import { BsXLg } from "react-icons/bs";
-import Button from "@/components/ui/Button";
+import Button from "@/components/myui/Button";
 
 interface ModalProps {
   isOpen?: boolean;

@@ -1,13 +1,15 @@
 "use client";
 import React from "react";
-import Sidebar from "@/components/ui/sidebar/Sidebar";
-import FollowBar from "@/components/ui/FollowBar";
-import LoginModal from "@/components/ui/modals/LoginModal";
-import RegisterModal from "./modals/RegisterModal";
+import Sidebar from "@/components/sidebar/Sidebar";
+import FollowBar from "@/components/myui/FollowBar";
+import LoginModal from "@/components/modals/LoginModal";
+import RegisterModal from "@/components/modals/RegisterModal";
+import { Toaster } from "react-hot-toast";
+import { SessionProvider } from "next-auth/react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
+    <SessionProvider>
       <div className="h-screen bg-black">
         <div className="container h-full mx-auto xl:px-30 max-w-6xl">
           <div className="grid grid-cols-4 h-full">
@@ -22,7 +24,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
       <LoginModal />
       <RegisterModal />
-    </>
+      <Toaster />
+    </SessionProvider>
   );
 };
 

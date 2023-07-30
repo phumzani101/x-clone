@@ -1,6 +1,6 @@
 "use client";
 
-import useLoginModal from "@/components/hooks/useLoginModal";
+import useLoginModal from "@/hooks/useLoginModal";
 import React, { useCallback } from "react";
 import { BsFillPencilFill } from "react-icons/bs";
 

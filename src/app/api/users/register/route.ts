@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import prismaClient from "@/lib/prismadb";
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   const { email, username, name, password } = await request.json();
 
   try {
@@ -19,9 +19,9 @@ export async function GET(request: Request) {
 
     return NextResponse.json(user);
   } catch (error: any) {
-    console.log("REGISTER_ERROR", error);
-    return new Response(`${error.message}`, {
-      status: 200,
+    console.log("AUTH_REGISTER_ERROR", error);
+    return new Response(`Failed to register try again later`, {
+      status: 400,
     });
   }
 }
