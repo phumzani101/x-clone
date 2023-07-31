@@ -1,4 +1,5 @@
 "use client";
+import EditModal from "@/components/modals/EditModal";
 import Header from "@/components/myui/Header";
 import UserBio from "@/components/users/UserBio";
 import UserHero from "@/components/users/UserHero";
@@ -9,7 +10,7 @@ import { ClipLoader } from "react-spinners";
 const UserPage = ({ params }: { params: { userId: string } }) => {
   const userId = params.userId;
 
-  const { data: user, isLoading } = useUserById(userId);
+  const { data: user, isLoading, mutate } = useUserById(userId);
 
   if (isLoading || !user) {
     return (
@@ -23,6 +24,8 @@ const UserPage = ({ params }: { params: { userId: string } }) => {
       <Header title={user?.name} showBackArrow />
       <UserHero user={user} />
       <UserBio user={user} />
+
+      {user && <EditModal user={user} mutate={mutate} />}
     </div>
   );
 };
