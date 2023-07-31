@@ -1,9 +1,10 @@
 "use client";
 import EditModal from "@/components/modals/EditModal";
 import Header from "@/components/myui/Header";
+import PostFeed from "@/components/posts/PostFeed";
 import UserBio from "@/components/users/UserBio";
 import UserHero from "@/components/users/UserHero";
-import useUserById from "@/hooks/useUserById";
+import useUserById from "@/hooks/users/useUserById";
 import React from "react";
 import { ClipLoader } from "react-spinners";
 
@@ -24,6 +25,7 @@ const UserPage = ({ params }: { params: { userId: string } }) => {
       <Header title={user?.name} showBackArrow />
       <UserHero user={user} />
       <UserBio user={user} />
+      <PostFeed userId={userId} />
 
       {user && <EditModal user={user} mutate={mutate} />}
     </div>

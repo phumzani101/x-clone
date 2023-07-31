@@ -8,7 +8,7 @@ import {
 import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
 import SidebarTweetButton from "./SidebarTweetButton";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/users/useUser";
 import { signOut } from "next-auth/react";
 
 const Sidebar = () => {

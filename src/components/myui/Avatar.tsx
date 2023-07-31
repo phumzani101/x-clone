@@ -1,5 +1,5 @@
 "use client";
-import useUserById from "@/hooks/useUserById";
+import useUserById from "@/hooks/users/useUserById";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";

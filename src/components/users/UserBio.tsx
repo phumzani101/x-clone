@@ -1,5 +1,5 @@
 "use client";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/users/useUser";
 import { format } from "date-fns";
 import React, { useMemo } from "react";
 import Button from "../myui/Button";

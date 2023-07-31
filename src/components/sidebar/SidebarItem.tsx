@@ -1,5 +1,5 @@
 import useLoginModal from "@/hooks/useLoginModal";
-import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/users/useUser";
 import { useRouter } from "next/navigation";
 import React, { FC, useCallback } from "react";
 import { IconType } from "react-icons";
