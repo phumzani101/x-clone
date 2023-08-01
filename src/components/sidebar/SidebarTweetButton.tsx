@@ -18,7 +18,7 @@ const SidebarTweetButton = () => {
       </div>
 
       <div className="relative hidden  mt-6 lg:flex items-center justify-center gap-4 px-4 py-2 rounded-full bg-sky-500 hover:bg-opacity-90 cursor-pointer text-center">
-        <BsFillPencilFill size={28} color="white" />{" "}
+        {/* <BsFillPencilFill size={28} color="white" />{" "} */}
         <p className="hidden lg:block text-white font-semibold  text-[20px]">
           Tweet
         </p>
