@@ -20,6 +20,12 @@ npm i
 npm run dev
 ```
 
+Setup prisma
+```bash
+npx prisma generate
+npx prisma db push
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Learn More

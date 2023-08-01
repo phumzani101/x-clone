@@ -5,10 +5,12 @@ import React, { useMemo } from "react";
 import Button from "../myui/Button";
 import { BiCalendar } from "react-icons/bi";
 import useEditModal from "@/hooks/useEditModal";
+import useFollow from "@/hooks/users/useFollow";
 
 const UserBio = ({ user }: { user?: any }) => {
   const { data: currentUser } = useUser();
   const editModal = useEditModal();
+  const { isFollowing, toggleFollow } = useFollow(user?.id);
 
   const createdAt = useMemo(() => {
     if (!user?.createdAt) {
@@ -23,7 +25,12 @@ const UserBio = ({ user }: { user?: any }) => {
         {currentUser?.id === user.id ? (
           <Button secondary title="Edit" onClick={editModal.onOpen} />
         ) : (
-          <Button secondary title="Follow" onClick={() => {}} />
+          <Button
+            secondary={!isFollowing}
+            outline={isFollowing}
+            title={isFollowing ? "Unfollow" : "Follow"}
+            onClick={toggleFollow}
+          />
         )}
       </div>
       <div className="mt-8 px-4">

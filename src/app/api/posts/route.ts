@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(post);
   } catch (error: any) {
-    console.log("AUTH_REGISTER_ERROR", error);
+    console.log("POST_ERROR", error);
     return new Response(`Failed to register try again later`, {
       status: 400,
     });
