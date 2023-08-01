@@ -32,7 +32,7 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
     } catch (error) {
       toast.error("Something went wrong");
     }
-  }, [currentUser, loginModal, postId]);
+  }, [currentUser, loginModal, postId, mutatePost, mutatePosts]);
 
   return { hasLiked, toggleLike };
 };

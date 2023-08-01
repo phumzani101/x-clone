@@ -8,7 +8,7 @@ const NotificationFeed = () => {
   const { data: notifications = [] } = useNotification(user?.id);
   useEffect(() => {
     mutateUser();
-  }, []);
+  }, [mutateUser]);
 
   if (notifications.length === 0) {
     return (

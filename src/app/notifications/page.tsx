@@ -13,7 +13,7 @@ const NotificationPage = () => {
     if (!user) {
       router.push("/");
     }
-  }, []);
+  }, [user, router]);
 
   return (
     <div>
