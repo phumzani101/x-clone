@@ -40,6 +40,22 @@ export async function POST(
       );
     } else {
       updatedLikedIds.push(currentUser?.id);
+      try {
+        if (post?.userId) {
+          await prismaClient.notification.create({
+            data: { body: "Someone liked your tweet!", userId: post.userId },
+          });
+        }
+
+        await prismaClient.user.update({
+          where: {
+            id: post.userId,
+          },
+          data: { hasNotification: true },
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     const updatedPost = await prismaClient.post.update({

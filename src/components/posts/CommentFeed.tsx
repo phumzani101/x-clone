@@ -9,9 +9,7 @@ const CommentFeed = ({
   return (
     <div>
       {comments.map((comment) => (
-        <div className="">
-          <CommentItem key={comment.id} comment={comment} />
-        </div>
+        <CommentItem key={comment.id} comment={comment} />
       ))}
     </div>
   );

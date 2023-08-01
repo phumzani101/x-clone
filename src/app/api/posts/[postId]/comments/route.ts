@@ -37,6 +37,30 @@ export async function POST(
       },
     });
 
+    try {
+      const post = await prismaClient.post.findUnique({
+        where: { id: postId },
+      });
+
+      if (post?.userId) {
+        await prismaClient.notification.create({
+          data: {
+            body: "Someone commented on your tweet!",
+            userId: post.userId,
+          },
+        });
+      }
+
+      await prismaClient.user.update({
+        where: {
+          id: post?.userId,
+        },
+        data: { hasNotification: true },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
     return NextResponse.json(comment);
   } catch (error: any) {
     console.log("POST_COMMENT_CREATE_ERROR", error);

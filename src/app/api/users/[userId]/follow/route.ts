@@ -34,6 +34,24 @@ export async function POST(
       );
     } else {
       updatedFollowingIds.push(userId);
+
+      try {
+        await prismaClient.notification.create({
+          data: {
+            body: "Someone followed you!",
+            userId: userId,
+          },
+        });
+
+        await prismaClient.user.update({
+          where: {
+            id: userId,
+          },
+          data: { hasNotification: true },
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     const updatedUser = await prismaClient.user.update({
