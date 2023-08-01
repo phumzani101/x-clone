@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/components/myui/Header";
+import CommentFeed from "@/components/posts/CommentFeed";
 import PostForm from "@/components/posts/PostForm";
 import PostItem from "@/components/posts/PostItem";
 import usePost from "@/hooks/posts/usePost";
@@ -24,6 +25,7 @@ const PostPage = ({ params }: { params: { postId: string } }) => {
       <Header title="Tweet" showBackArrow />
       <PostItem post={post} />
       <PostForm postId={postId} isComment placeholder="Tweet your reply" />
+      <CommentFeed comments={post?.comments} />
     </div>
   );
 };

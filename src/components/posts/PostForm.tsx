@@ -8,6 +8,7 @@ import React, { FC, useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import Button from "../myui/Button";
 import Avatar from "../myui/Avatar";
+import usePost from "@/hooks/posts/usePost";
 
 interface FormProps {
   placeholder: string;
@@ -20,7 +21,8 @@ const PostForm: FC<FormProps> = ({ placeholder, isComment, postId }) => {
   const loginModal = useLoginModal();
 
   const { data: user } = useUser();
-  const { mutate: mutatePost } = usePosts();
+  const { mutate: mutatePosts } = usePosts();
+  const { mutate: mutatePost } = usePost(postId);
 
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,17 +30,24 @@ const PostForm: FC<FormProps> = ({ placeholder, isComment, postId }) => {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-      await axios.post(`/api/posts`, { body });
 
-      toast.success("Tweet created");
+      if (isComment) {
+        await axios.post(`/api/posts/${postId}/comments`, { body });
+        toast.success("Comment posted");
+      } else {
+        await axios.post(`/api/posts`, { body });
+        toast.success("Tweet created");
+      }
+
       setBody("");
+      mutatePosts();
       mutatePost();
     } catch (error) {
       toast.error("Failed to create the tweet, please try again later");
     } finally {
       setIsLoading(false);
     }
-  }, [body, mutatePost]);
+  }, [body, mutatePost, isComment, postId, mutatePosts]);
 
   return (
     <div className="border-b-[1px] border-neutral-800 px-5 py-2">
